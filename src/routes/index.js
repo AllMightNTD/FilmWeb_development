@@ -9,7 +9,8 @@ const publicRoutes = [
     {path : '/Employee' , component: Employee},
     {path : '/create' , component: CreatEmployee , layout :'null'},
     {path : '/listEmployee' , component: ListEmployee , layout :'null'},
-    {path : '/EditFilm/:id' , component : UpdateFilm , layout:null}
+    {path : '/EditFilm/:id' , component : UpdateFilm , layout:null},
+    {path : '/MovieDetail/:slug' , component : MovieDetail , layout:null}
 ]
 
 const privateRoutes =[];

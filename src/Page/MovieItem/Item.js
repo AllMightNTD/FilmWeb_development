@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 
 import Col from 'react-bootstrap/Col';
-import InsideMovie from "./InsideMovie";
 
 
 function MovieItem({data}) {
