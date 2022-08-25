@@ -1,0 +1,33 @@
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+function CreatEmployee() {
+    return ( 
+        <Form className ="mt-5 ml-5 mr-5" method='POST' action='http://localhost:2345/employee/saveEmployee' >
+        <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Label> Name</Form.Label>
+          <Form.Control type="text" placeholder="Enter the name" name='name' />
+        </Form.Group>
+  
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Description</Form.Label>
+          <Form.Control type="text" placeholder="Description" name='description'  />
+        </Form.Group>
+        
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>Image</Form.Label>
+          <Form.Control type="text" placeholder="Image" name='image' />
+        </Form.Group>
+ 
+        <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Label>VideoID</Form.Label>
+          <Form.Control type="text" placeholder="Image" name ='videoID' />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+      </Form>
+     );
+}
+
+export default CreatEmployee ;
