@@ -1,6 +1,11 @@
+import classnames from 'classnames/bind'
+import style from './footer.module.scss'
+const cx = classnames.bind(style)
 function Footer() {
     return ( 
-        <h1>Footer</h1>
+        <div className={cx('container')}>
+            <h1>Footer</h1>
+        </div>
      );
 }
 

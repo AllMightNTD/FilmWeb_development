@@ -4,6 +4,9 @@ import Col from 'react-bootstrap/Col';
 import axios from 'axios'
 import React, { useEffect, useState } from 'react';
 import MovieItem from '../MovieItem/Item';
+import classnames from 'classnames/bind'
+import style from './Employee.module.scss'
+
 
 import {
   BrowserRouter as Router,
@@ -11,12 +14,16 @@ import {
   Route,
   Link
 } from "react-router-dom";
-function Employee() {
 
+
+function Employee() {
+  const cx = classnames.bind(style)
   const [data , setData] = useState([])
+
+  const link = `http://localhost:4000`;
   
     useEffect(() => {
-     axios.get('http://localhost:2345')
+     axios.get(link)
       .then(response =>setData(response ? response.data: []))
       .catch(function (error) {
      // handle error
@@ -26,15 +33,17 @@ function Employee() {
  
   },[])
     return (
-      <Container fluid="xl" className='mt-5'>
-      <Row>
-   {
-    data.map((item , index) => (
+        <div className={cx('container')}>
+              <Container fluid="xl" className={cx('mt-2' , 'ml-2')} >
+             <Row>
+       {
+         data.map((item , index) => (
           <MovieItem key={index} data = {item}/>
-     ))
-   }
-  </Row>
-</Container>
+         ))
+       }
+        </Row>
+      </Container>
+        </div>
       );
 }
 

@@ -1,8 +1,14 @@
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import classnames from 'classnames/bind'
+import style from './CreatEmployee.module.scss'
+
+const cx = classnames.bind(style)
+
+
 function CreatEmployee() {
     return ( 
-        <Form className ="mt-5 ml-5 mr-5" method='POST' action='http://localhost:2345/employee/saveEmployee' >
+        <Form className = {cx('mt-5 ml-5 mr-5')} method='POST' action='http://localhost:2345/employee/saveEmployee' >
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label> Name</Form.Label>
           <Form.Control type="text" placeholder="Enter the name" name='name' />

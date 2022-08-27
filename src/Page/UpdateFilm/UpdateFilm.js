@@ -7,12 +7,13 @@ function UpdateFilm() {
 
   // Lấy ra id 
     const params = useParams();
+    // Lấy id mình click vào lưu vào biến id 
     const {
       id 
     } = params
     const [dataFilm, setDataFilm] = useState({})
     useEffect(() => {
-        axios.get(`http://localhost:2345/employee/${id}/edit`)
+        axios.get(`http://localhost:4000/employee/${id}/edit`)
          .then(response =>setDataFilm(response ? response.data: []))
          .catch(function (error) {
         // handle error

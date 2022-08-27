@@ -1,0 +1,13 @@
+const express = require('express');
+var router = express.Router();
+
+// import Newcontroller từ newcontroller.js
+const sitecontrol = require('../app/controllers/Sitecontroller');
+
+// import Newcontroller vào để định nghĩa tuyến đường
+
+// Gọi đến hàm index
+router.use('/', sitecontrol.index);
+
+// export nó ra ngoài
+module.exports = router;
