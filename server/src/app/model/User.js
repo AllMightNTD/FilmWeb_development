@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 var slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+var mongooseDelete = require('mongoose-delete');
+
 const Schema = mongoose.Schema;
 
 const User = new Schema(
@@ -16,5 +17,12 @@ const User = new Schema(
         timestamps: true,
     },
 );
+
+mongoose.plugin(slug);
+// Thêm plugin để xóa mềm ( soft delete)
+
+// OverrideMethods : Ghi đè lại tất cả các phương thức : find , findOne , findOneAndUpdate ,update , updateOne , updateMany
+// Thêm deletedAt = true để xem thời gian xóa
+User.plugin(mongooseDelete, { deletedAt: true, overrideMethods: 'all' });
 
 module.exports = mongoose.model('User', User);

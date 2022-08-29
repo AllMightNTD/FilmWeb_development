@@ -1,78 +1,84 @@
 import Table from 'react-bootstrap/Table';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import classNames from 'classnames/bind';
+import style from './TrashEmployee.module.scss';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import classnames from 'classnames/bind';
-import style from './ListEmployee.module.scss';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
-function ListEmployee() {
-    const cx = classnames.bind(style);
-    const [dataFilm, setDataFilm] = useState([]);
+const cx = classNames.bind(style);
+function TrashEmployee() {
+    const [dataTrash, setDataTrash] = useState([]);
     const [show, setShow] = useState(false);
-    const [id, setID] = useState();
+    const [idforce, setIDForce] = useState();
 
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
     const handleData = (idFake) => {
-        setID(idFake);
+        setIDForce(idFake);
         setShow(true);
     };
     useEffect(() => {
         axios
-            .get('http://localhost:4100')
-            .then((response) => setDataFilm(response ? response.data : []))
+            .get('http://localhost:4100/me/trash')
+            .then((response) => setDataTrash(response ? response.data : []))
             .catch(function (error) {
                 // handle error
                 console.log(error);
             });
     }, []);
-    console.log(id);
+
+    console.log(dataTrash);
+    console.log(idforce);
+
     return (
-        <div className={cx('list_film')}>
-            <Link to="/trash" className="trash_film">
-                <h3>Thùng rác</h3>
+        <div className={cx('trash_film')}>
+            <Link to="/listemployee">
+                <h3>Danh sách phim</h3>
             </Link>
-            <Table striped bordered hover className="mt-3">
+            <Table striped bordered hover>
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Name</th>
-                        <th>Create time</th>
+                        <th>Creat Time</th>
                         <th>Setting</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {dataFilm.length > 0 ? ( // Hàm map : biến đầu là dữ liệu , biến sau là chi mục {index}
-                        dataFilm.map((dataItem, index) => (
+                    {dataTrash.length > 0 ? (
+                        dataTrash.map((dataItem, index) => (
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <th>{dataItem.name}</th>
                                 <th>{dataItem.createdAt}</th>
                                 <th>
                                     <div style={{ display: 'flex' }}>
-                                        <a href={`/EditFilm/${dataItem._id}`} className={cx('btn btn-danger')}>
-                                            Sửa
-                                        </a>
+                                        <form
+                                            method="POST"
+                                            action={`http://localhost:4100/employee/${dataItem._id}/restore?_method=PATCH`}
+                                        >
+                                            <Button className={cx('btn btn-danger')} type="submit">
+                                                Khôi phục
+                                            </Button>
+                                        </form>
 
                                         {/* Khi click vào button xóa  */}
                                         {/* Gọi đến link trong action với phương thức DELETE */}
                                         {/* Bên database nhận lại id và xóa theo ID */}
                                         <Button type="submit" variant="danger" onClick={() => handleData(dataItem._id)}>
-                                            Xóa
+                                            Xóa Vĩnh Viễn
                                         </Button>
                                     </div>
                                 </th>
                             </tr>
                         ))
                     ) : (
-                        <tr>
-                            <h5 style={{ textAlign: 'center' }}>
-                                Không có dữ liệu
-                                <Link to="/create"> Tạo dữ liệu mới</Link>
-                            </h5>
-                        </tr>
+                        <p>
+                            Thùng rác trống
+                            <Link to="/listemployee">Quay lại danh sách phim</Link>
+                        </p>
                     )}
                 </tbody>
             </Table>
@@ -82,12 +88,14 @@ function ListEmployee() {
                     <Modal.Header closeButton>
                         <Modal.Title>Modal heading</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Bạn có chắc chắn muốn xóa </Modal.Body>
+                    <Modal.Body>Hành động này sẽ không thể khôi phục . Bạn có chắc muốn xóa ???</Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>
                             Hủy
                         </Button>
-                        <form method="POST" action={`http://localhost:4100/employee/${id}?_method=DELETE`}>
+
+                        {/* Xóa vĩnh viễn với id */}
+                        <form method="POST" action={`http://localhost:4100/employee/${idforce}/force?_method=DELETE`}>
                             <Button variant="danger" type="submit">
                                 Xóa
                             </Button>
@@ -99,4 +107,4 @@ function ListEmployee() {
     );
 }
 
-export default ListEmployee;
+export default TrashEmployee;

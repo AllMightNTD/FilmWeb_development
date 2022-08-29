@@ -1,19 +1,20 @@
-
-import Home from "../Page/Home/home";
-import Employee from "../Page/Employee/Employee"
-import CreatEmployee from "../Page/CreatEmployee/CreatEmployee";
-import ListEmployee from "../Page/ListEmployee/ListEmployee";
-import UpdateFilm from "../Page/UpdateFilm/UpdateFilm";
-import MovieDetail from "../Page/MovieDetail/MovieDetail";
+import Home from '../Page/Home/home';
+import Employee from '../Page/Employee/Employee';
+import CreatEmployee from '../Page/CreatEmployee/CreatEmployee';
+import ListEmployee from '../Page/ListEmployee/ListEmployee';
+import UpdateFilm from '../Page/UpdateFilm/UpdateFilm';
+import MovieDetail from '../Page/MovieDetail/MovieDetail';
+import TrashEmployee from '../Page/TrashEmployee/TrashEmployee';
 const publicRoutes = [
-    {path : '/' , component : Employee},
-    {path : '/Employee' , component: Employee},
-    {path : '/create' , component: CreatEmployee , layout :'null'},
-    {path : '/listEmployee' , component: ListEmployee},
-    {path : '/EditFilm/:id' , component : UpdateFilm  },
-    {path : '/MovieDetail/:slug' , component : MovieDetail  }
-]
+    { path: '/', component: Employee },
+    { path: '/Employee', component: Employee },
+    { path: '/create', component: CreatEmployee, layout: 'null' },
+    { path: '/listEmployee', component: ListEmployee },
+    { path: '/EditFilm/:id', component: UpdateFilm },
+    { path: '/MovieDetail/:slug', component: MovieDetail },
+    { path: '/trash', component: TrashEmployee },
+];
 
-const privateRoutes =[];
+const privateRoutes = [];
 
-export {publicRoutes , privateRoutes};
+export { publicRoutes, privateRoutes };

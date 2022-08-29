@@ -14,7 +14,7 @@ class EmployeeController {
         // Lưu dữ liệu trên sever
         const user = new User(req.body);
         user.save()
-            .then(() => res.redirect('http://localhost:3000/Employee'))
+            .then(() => res.redirect('http://localhost:3000/listemployee'))
             .catch((error) => res.send(error.message));
     }
     // [GET] / employee / id / edit
@@ -35,8 +35,24 @@ class EmployeeController {
     // [DELETE] / employee / id
     // Xóa theo id
     delete(req, res, next) {
-        User.deleteOne({ _id: req.params.id })
+        User.delete({ _id: req.params.id })
             .then(() => res.redirect('http://localhost:3000/listEmployee'))
+            .catch((error) => res.send(error.message));
+    }
+
+    // [RESTORE] / employee / id
+    // Khôi phục những cái đã xóa bằng restore
+    restoreEmployee(req, res, next) {
+        User.restore({ _id: req.params.id })
+            .then(() => res.redirect('http://localhost:3000/listEmployee'))
+            .catch((error) => res.send(error.message));
+    }
+
+    // [DELETE FOREVER] /employee/force/id
+    // Xóa vĩnh viễn bằng deleteOne
+    deleteForever(req, res, next) {
+        User.deleteOne({ _id: req.params.id })
+            .then(() => res.redirect('http://localhost:3000/trash'))
             .catch((error) => res.send(error.message));
     }
 }

@@ -8,6 +8,7 @@ const sitecontrol = require('../app/controllers/Sitecontroller');
 
 // Gọi đến hàm index
 router.use('/', sitecontrol.index);
+// Thùng rác
 
 // export nó ra ngoài
 module.exports = router;
