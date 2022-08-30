@@ -10,7 +10,14 @@ import { Link } from 'react-router-dom';
 function ListEmployee() {
     const cx = classnames.bind(style);
     const [dataFilm, setDataFilm] = useState([]);
+
+    // Số dữ liệu xóa
+    const [deletedCount, setDeletedCount] = useState();
+
+    // Show model xóa
     const [show, setShow] = useState(false);
+
+    // Id xóa
     const [id, setID] = useState();
 
     const handleClose = () => setShow(false);
@@ -20,11 +27,17 @@ function ListEmployee() {
         setShow(true);
     };
     useEffect(() => {
+        // Get link lấy ra dữ liệu là 1 object bao gồm 1 mảng và 1 count(số dữ liệu xóa )
         axios
-            .get('http://localhost:4100')
-            .then((response) => setDataFilm(response ? response.data : []))
+            .get('http://localhost:4100/me/storedEmloyee')
+            .then((myData) => {
+                console.log(myData);
+                // Set data dữ liệu
+                setDataFilm(myData.data.users);
+                // Set số dữ liệu xóa
+                setDeletedCount(myData.data.deletedCount);
+            })
             .catch(function (error) {
-                // handle error
                 console.log(error);
             });
     }, []);
@@ -32,7 +45,7 @@ function ListEmployee() {
     return (
         <div className={cx('list_film')}>
             <Link to="/trash" className="trash_film">
-                <h3>Thùng rác</h3>
+                <h3>Thùng rác ({deletedCount})</h3>
             </Link>
             <Table striped bordered hover className="mt-3">
                 <thead>

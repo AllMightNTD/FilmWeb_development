@@ -9,5 +9,7 @@ const mecontrol = require('../app/controllers/MeController');
 // Thùng rác : chứa những cái đã xóa
 router.use('/trash', mecontrol.trashemployee);
 
+router.use('/storedEmloyee', mecontrol.storedemployee);
+
 // export nó ra ngoài
 module.exports = router;
