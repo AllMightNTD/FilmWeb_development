@@ -52,6 +52,7 @@ function ListEmployee() {
                     <tr>
                         <th>#</th>
                         <th>Name</th>
+                        <th>Category</th>
                         <th>Create time</th>
                         <th>Setting</th>
                     </tr>
@@ -62,6 +63,7 @@ function ListEmployee() {
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <th>{dataItem.name}</th>
+                                <th>{dataItem.category}</th>
                                 <th>{dataItem.createdAt}</th>
                                 <th>
                                     <div style={{ display: 'flex' }}>

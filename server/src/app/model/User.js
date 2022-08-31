@@ -10,6 +10,7 @@ const User = new Schema(
         description: String,
         image: String,
         videoID: String,
+        category: String,
         // Random Slug : Tải slug generator
         slug: { type: String, slug: 'name', unique: true },
     },

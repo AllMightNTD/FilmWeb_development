@@ -10,6 +10,7 @@ const mecontrol = require('../app/controllers/MeController');
 router.use('/trash', mecontrol.trashemployee);
 
 router.use('/storedEmloyee', mecontrol.storedemployee);
-
+// Show theo thể loại
+router.use('/:category', mecontrol.showCategory);
 // export nó ra ngoài
 module.exports = router;

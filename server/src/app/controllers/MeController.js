@@ -23,6 +23,15 @@ class MeController {
             })
             .catch((error) => next(error));
     }
+    // showCategory
+    showCategory(req, res, next) {
+        User.find({ category: req.params.category })
+            .then((user) => {
+                // Gọi hàm chuyển sang Object từ handlerbar
+                res.send(user);
+            })
+            .catch(next);
+    }
 }
 
 module.exports = new MeController();

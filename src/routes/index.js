@@ -5,6 +5,7 @@ import ListEmployee from '../Page/ListEmployee/ListEmployee';
 import UpdateFilm from '../Page/UpdateFilm/UpdateFilm';
 import MovieDetail from '../Page/MovieDetail/MovieDetail';
 import TrashEmployee from '../Page/TrashEmployee/TrashEmployee';
+import EmployeeCategory from '../Page/EmployeeCategory/EmployeeCategory';
 const publicRoutes = [
     { path: '/', component: Employee },
     { path: '/Employee', component: Employee },
@@ -12,6 +13,7 @@ const publicRoutes = [
     { path: '/listEmployee', component: ListEmployee },
     { path: '/EditFilm/:id', component: UpdateFilm },
     { path: '/MovieDetail/:slug', component: MovieDetail },
+    { path: '/EmployeeCategory/:category', component: EmployeeCategory },
     { path: '/trash', component: TrashEmployee },
 ];
 

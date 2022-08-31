@@ -10,13 +10,13 @@ function MovieItem({ data }) {
     return (
         <Col xl={3} lg={4} md={4} sm={6}>
             <div key={data.id} className={cx('block_data')}>
-                <a className={cx('Link_image')} href={`/MovieDetail/${data.slug}`}>
+                <Link className={cx('Link_image')} to={`/MovieDetail/${data.slug}`}>
                     <img className={cx('image_movie')} src={data.image} alt={data.name} />
-                </a>
+                </Link>
 
-                <a href={`/MovieDetail/${data.slug}`}>
+                <Link to={`/MovieDetail/${data.slug}`}>
                     <h3 className={cx('title_movie')}>{data.name}</h3>
-                </a>
+                </Link>
                 <p>{data.description}</p>
             </div>
         </Col>

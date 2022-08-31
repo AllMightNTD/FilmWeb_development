@@ -37,6 +37,11 @@ function UpdateFilm() {
                 />
             </Form.Group>
 
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Category</Form.Label>
+                <Form.Control type="text" placeholder={dataFilm.category} name="category" />
+            </Form.Group>
+
             <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="text" placeholder={dataFilm.image} name="image" />
