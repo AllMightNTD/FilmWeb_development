@@ -19,6 +19,11 @@ function CreatEmployee() {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Category</Form.Label>
+                <Form.Control type="text" placeholder="Category" name="category" />
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicPassword">
                 <Form.Label>Image</Form.Label>
                 <Form.Control type="text" placeholder="Image" name="image" />
             </Form.Group>
