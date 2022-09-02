@@ -34,7 +34,7 @@ class Sitecontroller {
 
                     // Trọc sang view (render sang view ) truyền data lấy từ model sang view
                     // view đọc file , logic và render ra màn hình từ đó trọc về browser
-                    res.render('home', { users: multipleMongooseToObject(users) });
+                    res.json(users);
                 })
                 .catch((error) => next(error));
         } else {
@@ -48,6 +48,37 @@ class Sitecontroller {
 
             // res.render('home')
         }
+    }
+    search(req, res, next) {
+        var searchValue = req.query.q;
+        User.find()
+            .then((user) => {
+                // Gọi hàm chuyển sang Object từ handlerbar
+                var dataItem = user.filter((item) => {
+                    item.name = item.name.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
+                    item.name = item.name.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
+                    item.name = item.name.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
+                    item.name = item.name.replace(/ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ/g, 'o');
+                    item.name = item.name.replace(/ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ/g, 'u');
+                    item.name = item.name.replace(/ỳ|ý|ỵ|ỷ|ỹ/g, 'y');
+                    item.name = item.name.replace(/đ/g, 'd');
+                    item.name = item.name.replace(/À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ/g, 'A');
+                    item.name = item.name.replace(/È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ/g, 'E');
+                    item.name = item.name.replace(/Ì|Í|Ị|Ỉ|Ĩ/g, 'I');
+                    item.name = item.name.replace(/Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ/g, 'O');
+                    item.name = item.name.replace(/Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ/g, 'U');
+                    item.name = item.name.replace(/Ỳ|Ý|Ỵ|Ỷ|Ỹ/g, 'Y');
+                    item.name = item.name.replace(/Đ/g, 'D');
+                    item.name = item.name.replace(
+                        /!|@|%|\^|\*|\(|\)|\+|\=|\<|\>|\?|\/|,|\.|\:|\;|\'|\"|\&|\#|\[|\]|~|\$|_|`|-|{|}|\||\\/g,
+                        ' ',
+                    );
+                    item.name = item.name.replace(/  +/g, ' ');
+                    return item.name.toLowerCase().includes(searchValue);
+                });
+                res.json(dataItem);
+            })
+            .catch(next);
     }
 }
 

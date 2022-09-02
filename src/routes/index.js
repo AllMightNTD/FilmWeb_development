@@ -13,7 +13,7 @@ const publicRoutes = [
     { path: '/listEmployee', component: ListEmployee },
     { path: '/EditFilm/:id', component: UpdateFilm },
     { path: '/MovieDetail/:slug', component: MovieDetail },
-    { path: '/EmployeeCategory/:category', component: EmployeeCategory },
+    { path: '/the-loai/:category', component: EmployeeCategory },
     { path: '/trash', component: TrashEmployee },
 ];
 

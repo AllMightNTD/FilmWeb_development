@@ -1,8 +1,10 @@
 .container {
     width: 100%;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 .content {
-    width: 1256px;
+    width: 1024px;
     margin: 0 auto;
 }

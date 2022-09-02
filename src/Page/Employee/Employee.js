@@ -26,8 +26,8 @@ function Employee() {
     }, []);
     return (
         <div className={cx('container')}>
-            <Container fluid="xl" className={cx('mt-2', 'ml-2')}>
-                <Row>
+            <Container fluid="xl" className={cx('mt-2', 'container_content')}>
+                <Row className={cx('Row_content')}>
                     {data.map((item, index) => (
                         <MovieItem key={index} data={item} />
                     ))}

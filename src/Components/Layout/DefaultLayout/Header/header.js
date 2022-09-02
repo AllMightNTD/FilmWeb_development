@@ -4,30 +4,20 @@ import Navbar from 'react-bootstrap/Navbar';
 import classnames from 'classnames/bind';
 import Tippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css'; // optional
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import style from './header.module.scss';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faEllipsisVertical, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
-import { faCircle, faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+
+import VideoItem from '../../../SearchVideoItem';
+import Search from '../../Search';
 const cx = classnames.bind(style);
 
 function Header() {
     const [visible, setVisible] = useState(true);
     const show = () => setVisible(true);
     const hide = () => setVisible(false);
-
-    const [searchValue, setsearchValue] = useState();
-
-    // Xử lý giá trị search
-    const hanldeSearchValue = (e) => {
-        const value = e.target.value;
-
-        // Không cho bắt đầu bằng khoảng trắng
-        if (!value.startsWith(' ')) {
-            setsearchValue(value);
-        }
-    };
 
     const dataA = [
         {
@@ -37,15 +27,99 @@ function Header() {
             option: {
                 hello: [
                     {
+                        name: 'Hành Động',
                         category: 'act',
                     },
                     {
+                        name: 'Tình Cảm',
                         category: 'love',
                     },
                     {
+                        name: 'Trinh Thám',
                         category: 'detective',
                     },
                     {
+                        name: 'Thần Thoại',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Âm Nhạc',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Khoa Học',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Lịch Sử',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Kiếm Hiệp',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Phiêu Lưu',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Hoạt Hình',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Tâm Lý',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Chiến Tranh',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Hình Sự',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Tài Liệu',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Gia Đình',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Thanh Xuân',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Kinh Dị',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Võ Thuật',
+                        category: 'love',
+                    },
+                    {
+                        name: 'TV Show',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Cổ Trang',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Thể Thao',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Bí Ân',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Học Đường',
+                        category: 'love',
+                    },
+                    {
+                        name: 'Động Vật',
                         category: 'love',
                     },
                 ],
@@ -58,16 +132,43 @@ function Header() {
             option: {
                 hello: [
                     {
-                        category: 'act',
+                        name: 'Anh',
+                        category: 'england',
+                    },
+                    { name: 'Mỹ', category: 'america' },
+                    {
+                        name: 'Canada',
+                        category: 'canada',
                     },
                     {
-                        category: 'love',
+                        name: 'China',
+                        category: 'china',
                     },
                     {
-                        category: 'detective',
+                        name: 'Hồng Kông',
+                        category: 'england',
+                    },
+                    { name: 'Ấn Độ', category: 'america' },
+                    {
+                        name: 'Hàn Quốc',
+                        category: 'canada',
                     },
                     {
-                        category: 'love',
+                        name: 'Nga',
+                        category: 'china',
+                    },
+                    {
+                        name: 'Pháp',
+                        category: 'england',
+                    },
+                    { name: 'Đức', category: 'america' },
+                    {
+                        name: 'Thái Lan',
+                        category: 'canada',
+                    },
+                    {
+                        name: 'Tây Ban Nha',
+                        category: 'china',
                     },
                 ],
             },
@@ -79,17 +180,26 @@ function Header() {
             option: {
                 hello: [
                     {
-                        category: 'act',
+                        name: 'Năm 2019',
+                        category: '2019',
                     },
+                    { name: 'Năm 2020', category: '2020' },
+                    { name: 'Năm 2021', category: '2021' },
+                    { name: 'Năm 2022', category: '2022' },
                     {
-                        category: 'love',
+                        name: 'Năm 2018',
+                        category: '2019',
                     },
+                    { name: 'Năm 2017', category: '2020' },
+                    { name: 'Năm 2016', category: '2021' },
+                    { name: 'Năm 2015', category: '2022' },
                     {
-                        category: 'detective',
+                        name: 'Năm 2014',
+                        category: '2013',
                     },
-                    {
-                        category: 'love',
-                    },
+                    { name: 'Năm 2012', category: '2020' },
+                    { name: 'Năm 2011', category: '2021' },
+                    { name: 'Năm 2010', category: '2022' },
                 ],
             },
         },
@@ -100,16 +210,17 @@ function Header() {
             option: {
                 hello: [
                     {
-                        category: 'act',
+                        name: 'Anh',
+                        category: 'england',
+                    },
+                    { name: 'Mỹ', category: 'america' },
+                    {
+                        name: 'Canada',
+                        category: 'canada',
                     },
                     {
-                        category: 'love',
-                    },
-                    {
-                        category: 'detective',
-                    },
-                    {
-                        category: 'love',
+                        name: 'China',
+                        category: 'china',
                     },
                 ],
             },
@@ -183,11 +294,8 @@ function Header() {
                                 <div className={cx('OptionMovie_box')} tabIndex="-1" {...attrs}>
                                     {dataOption.option.hello.map((data2) => {
                                         return (
-                                            <a
-                                                className={cx('option_link-movie')}
-                                                href={`/EmployeeCategory/${data2.category}`}
-                                            >
-                                                {data2.category}
+                                            <a className={cx('option_link-movie')} href={`/the-loai/${data2.category}`}>
+                                                {data2.name}
                                             </a>
                                         );
                                     })}
@@ -205,29 +313,10 @@ function Header() {
                         </Tippy>
                     ))}
                 </ul>
-                <div className={cx('search')}>
-                    <input
-                        value={searchValue}
-                        className="input_search"
-                        type="text"
-                        placeholder="Search video..."
-                        spellCheck={false}
-                        onChange={hanldeSearchValue}
-                    ></input>
-                    {/* Clear */}
-                    {searchValue && (
-                        <button className={cx('clear')} onClick={() => setsearchValue('')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-                    )}
-                    {/* Loading  */}
-                    {/* <button className={cx('loading')}>
-                        <FontAwesomeIcon icon={faSpinner} />
-                    </button> */}
-                    <button className={cx('search_button')}>
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button>
-                </div>
+
+                {/* Search */}
+                {<Search />}
+
                 <div className={cx('bar_settings')}>
                     <Tippy
                         interactive
