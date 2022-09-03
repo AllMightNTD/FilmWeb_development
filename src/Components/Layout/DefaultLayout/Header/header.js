@@ -15,7 +15,7 @@ import Search from '../../Search';
 const cx = classnames.bind(style);
 
 function Header() {
-    const [visible, setVisible] = useState(true);
+    const [visible, setVisible] = useState(false);
     const show = () => setVisible(true);
     const hide = () => setVisible(false);
 

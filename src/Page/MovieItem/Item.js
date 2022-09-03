@@ -14,12 +14,10 @@ function MovieItem({ data }) {
                     <img className={cx('image_movie')} src={data.image} alt={data.name} />
                 </Link>
 
-                <div className={cx('info_movie')}>
-                    <Link to={`/MovieDetail/${data.slug}`} style={{ textDecoration: 'none' }}>
-                        <h3 className={cx('title_movie')}>{data.name}</h3>
-                    </Link>
-                    <p className={cx('description_movie')}>{data.description}</p>
-                </div>
+                <Link to={`/MovieDetail/${data.slug}`} style={{ textDecoration: 'none' }} className={cx('info_movie')}>
+                    <p className={cx('title_movie')}>{data.name}</p>
+                    <span className={cx('description_movie')}>{data.description}</span>
+                </Link>
             </div>
         </Col>
     );

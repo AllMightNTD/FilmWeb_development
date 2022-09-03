@@ -1,6 +1,6 @@
 // Định nghĩa Controller
 const User = require('../model/User');
-const PAGE_SIZE = 2;
+const PAGE_SIZE = 12;
 class Sitecontroller {
     index(req, res, next) {
         // Lấy ra dữ liệu model dưới dạng JSON

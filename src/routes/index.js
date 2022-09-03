@@ -9,7 +9,7 @@ import EmployeeCategory from '../Page/EmployeeCategory/EmployeeCategory';
 const publicRoutes = [
     { path: '/', component: Employee },
     { path: '/Employee', component: Employee },
-    { path: '/create', component: CreatEmployee, layout: 'null' },
+    { path: '/create', component: CreatEmployee },
     { path: '/listEmployee', component: ListEmployee },
     { path: '/EditFilm/:id', component: UpdateFilm },
     { path: '/MovieDetail/:slug', component: MovieDetail },

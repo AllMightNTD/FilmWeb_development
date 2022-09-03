@@ -6,6 +6,8 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(style);
 function TrashEmployee() {
@@ -33,10 +35,11 @@ function TrashEmployee() {
     console.log(idforce);
 
     return (
-        <div className={cx('trash_film')}>
-            <Link to="/listemployee">
-                <h3>Danh sách phim</h3>
-            </Link>
+        <div className={cx('trash_container')}>
+            <a href="/listemployee" className={cx('list_film')} style={{ textDecoration: 'none' }}>
+                <FontAwesomeIcon icon={faList} />
+                <p>Danh sách phim</p>
+            </a>
             <Table striped bordered hover>
                 <thead>
                     <tr>

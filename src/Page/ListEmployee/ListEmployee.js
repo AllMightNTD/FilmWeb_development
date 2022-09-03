@@ -6,6 +6,9 @@ import Button from 'react-bootstrap/Button';
 import classnames from 'classnames/bind';
 import style from './ListEmployee.module.scss';
 import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSquarePlus } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
 function ListEmployee() {
     const cx = classnames.bind(style);
@@ -44,9 +47,17 @@ function ListEmployee() {
     console.log(id);
     return (
         <div className={cx('list_film')}>
-            <Link to="/trash" className="trash_film">
-                <h3>Thùng rác ({deletedCount})</h3>
-            </Link>
+            <div className={cx('Request_film')}>
+                <a href="/trash" className={cx('trash_film')} style={{ textDecoration: 'none' }}>
+                    <h3>
+                        <FontAwesomeIcon icon={faTrash} className={cx('icon_trash')} />({deletedCount})
+                    </h3>
+                </a>
+                <Link to="/create" className={cx('button_create-film')} style={{ textDecoration: 'none' }}>
+                    <FontAwesomeIcon icon={faSquarePlus} className={cx('icon_create')} />
+                    <button>Tạo Phim</button>
+                </Link>
+            </div>
             <Table striped bordered hover className="mt-3">
                 <thead>
                     <tr>

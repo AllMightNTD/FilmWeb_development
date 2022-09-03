@@ -25,12 +25,35 @@ class MeController {
     }
     // showCategory
     showCategory(req, res, next) {
-        User.find({ category: req.params.category })
-            .then((user) => {
-                // Gọi hàm chuyển sang Object từ handlerbar
-                res.send(user);
-            })
-            .catch(next);
+        var page = req.query.page;
+        if (page) {
+            // Get page
+            // Chuyển sang int
+            page = parseInt(page);
+            // Số lượng bỏ qua
+            var skipNumber = (page - 1) * PAGE_SIZE;
+            User.find({})
+                .skip(skipNumber)
+                // Số lượng giới hạn
+                .limit(PAGE_SIZE)
+                .then((users) => {
+                    // Lấy dữ liệu trong model user truyền vào home
+
+                    //  Biến nó thành Object Literal từ Object Constructor
+
+                    // Trọc sang view (render sang view ) truyền data lấy từ model sang view
+                    // view đọc file , logic và render ra màn hình từ đó trọc về browser
+                    res.json(users);
+                })
+                .catch((error) => next(error));
+        } else {
+            User.find({ category: req.params.category })
+                .then((user) => {
+                    // Gọi hàm chuyển sang Object từ handlerbar
+                    res.send(user);
+                })
+                .catch(next);
+        }
     }
 }
 

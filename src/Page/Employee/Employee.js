@@ -54,7 +54,7 @@ function Employee() {
                 </Row>
             </Container>
             <div className={cx('Pagination_page')}>
-                <Pagination>{items}</Pagination>
+                <Pagination size="sm">{items}</Pagination>
                 <br />
             </div>
         </div>
