@@ -1,33 +1,34 @@
 // Định nghĩa Controller
-const User = require('../model/User');
+const Music = require('../model/Music');
 class EmployeeController {
     show(req, res, next) {
         // Tìm kiếm một document dựa trên 1 trường đó là slug (findOne)
-        User.findOne({ slug: req.params.slug })
-            .then((user) => {
+        Music.findOne({ slug: req.params.slug })
+            .then((music) => {
                 // Gọi hàm chuyển sang Object từ handlerbar
-                res.json(user);
+                res.json(music);
             })
             .catch(next);
     }
     saveEmployee(req, res, next) {
         // Lưu dữ liệu trên sever
-        const user = new User(req.body);
-        user.save()
+        const music = new Music(req.body);
+        music
+            .save()
             .then(() => res.redirect('http://localhost:3000/listemployee'))
             .catch((error) => res.send(error.message));
     }
     // [GET] / employee / id / edit
     edit(req, res, next) {
         // Tìm kiếm theo ID
-        User.findById(req.params.id)
-            .then((user) => res.json(user))
+        Music.findById(req.params.id)
+            .then((music) => res.json(music))
             .catch(next);
     }
 
     // [PUT] / employee / id
     update(req, res, next) {
-        User.updateOne({ _id: req.params.id }, req.body)
+        Music.updateOne({ _id: req.params.id }, req.body)
             .then(() => res.redirect('http://localhost:3000/listEmployee'))
             .catch((error) => res.send(error.message));
     }
@@ -35,7 +36,7 @@ class EmployeeController {
     // [DELETE] / employee / id
     // Xóa theo id
     delete(req, res, next) {
-        User.delete({ _id: req.params.id })
+        Music.delete({ _id: req.params.id })
             .then(() => res.redirect('http://localhost:3000/listEmployee'))
             .catch((error) => res.send(error.message));
     }
@@ -43,7 +44,7 @@ class EmployeeController {
     // [RESTORE] / employee / id
     // Khôi phục những cái đã xóa bằng restore
     restoreEmployee(req, res, next) {
-        User.restore({ _id: req.params.id })
+        Music.restore({ _id: req.params.id })
             .then(() => res.redirect('http://localhost:3000/listEmployee'))
             .catch((error) => res.send(error.message));
     }
@@ -51,7 +52,7 @@ class EmployeeController {
     // [DELETE FOREVER] /employee/force/id
     // Xóa vĩnh viễn bằng deleteOne
     deleteForever(req, res, next) {
-        User.deleteOne({ _id: req.params.id })
+        Music.deleteOne({ _id: req.params.id })
             .then(() => res.redirect('http://localhost:3000/trash'))
             .catch((error) => res.send(error.message));
     }

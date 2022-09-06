@@ -1,5 +1,5 @@
 // Định nghĩa Controller
-const User = require('../model/User');
+const Music = require('../model/Music');
 const PAGE_SIZE = 12;
 class Sitecontroller {
     index(req, res, next) {
@@ -7,7 +7,7 @@ class Sitecontroller {
         // Bắn yêu cầu qua Model , lấy ra và trả dữ liệu lại dưới dạng JSON
         // methd find truyền vào một callback
 
-        // User.find({}, function (err, users) {
+        // Music.find({}, function (err, users) {
         //     if (!err) {
         //         res.json(users);
         //     } else {
@@ -23,24 +23,24 @@ class Sitecontroller {
             page = parseInt(page);
             // Số lượng bỏ qua
             var skipNumber = (page - 1) * PAGE_SIZE;
-            User.find({})
+            Music.find({})
                 .skip(skipNumber)
                 // Số lượng giới hạn
                 .limit(PAGE_SIZE)
-                .then((users) => {
+                .then((musics) => {
                     // Lấy dữ liệu trong model user truyền vào home
 
                     //  Biến nó thành Object Literal từ Object Constructor
 
                     // Trọc sang view (render sang view ) truyền data lấy từ model sang view
                     // view đọc file , logic và render ra màn hình từ đó trọc về browser
-                    res.json(users);
+                    res.json(musics);
                 })
                 .catch((error) => next(error));
         } else {
-            User.find({}, function (err, users) {
+            Music.find({}, function (err, musics) {
                 if (!err) {
-                    res.send(users);
+                    res.send(musics);
                 } else {
                     res.status(500).json({ error: 'message' });
                 }
@@ -51,10 +51,10 @@ class Sitecontroller {
     }
     search(req, res, next) {
         var searchValue = req.query.q;
-        User.find()
-            .then((user) => {
+        Music.find()
+            .then((music) => {
                 // Gọi hàm chuyển sang Object từ handlerbar
-                var dataItem = user.filter((item) => {
+                var dataItem = music.filter((item) => {
                     item.name = item.name.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g, 'a');
                     item.name = item.name.replace(/è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ/g, 'e');
                     item.name = item.name.replace(/ì|í|ị|ỉ|ĩ/g, 'i');
@@ -74,7 +74,7 @@ class Sitecontroller {
                         ' ',
                     );
                     item.name = item.name.replace(/  +/g, ' ');
-                    return item.name.toLowerCase().includes(searchValue);
+                    return item.name.toLowerCase().includes(searchValue.toLowerCase());
                 });
                 res.json(dataItem);
             })

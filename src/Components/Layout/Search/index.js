@@ -39,9 +39,10 @@ function Search() {
         }
         setLoading(true);
         axios
-            .get(`http://localhost:4100/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .get(`http://localhost:12000/search?q=${encodeURIComponent(searchValue)}&type=less`)
             .then((response) => {
                 setSearchResult(response ? response.data : []);
+                console.log(response.data);
                 setLoading(false);
             })
             .catch(function (error) {

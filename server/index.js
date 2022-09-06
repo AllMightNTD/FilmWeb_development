@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const methodOverride = require('method-override');
 var bodyParser = require('body-parser');
-const port = 4100;
+const port = 12000;
 
 const route = require('./src/routes/index.js');
 const db = require('./src/config/db');

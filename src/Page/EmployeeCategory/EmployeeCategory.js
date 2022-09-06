@@ -34,7 +34,7 @@ function EmployeeCategory() {
     console.log(page);
     useEffect(() => {
         axios
-            .get(`http://localhost:4100/me/${category}?page=${page}&type=less`)
+            .get(`http://localhost:12000/me/${category}?page=${page}&type=less`)
             .then((response) => setDataFilm(response ? response.data : []))
             .catch((error) => console.log(error));
     }, [page]);

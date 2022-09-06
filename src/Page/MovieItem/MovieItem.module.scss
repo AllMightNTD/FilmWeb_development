@@ -5,6 +5,8 @@
 .block_data {
     position: relative;
     width: 248px;
+    border-radius: 5px;
+    overflow: hidden;
     padding-left: -15px;
     padding-right: -15px;
     height: 100%;

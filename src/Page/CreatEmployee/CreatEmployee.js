@@ -8,7 +8,7 @@ const cx = classnames.bind(style);
 function CreatEmployee() {
     return (
         <div className={cx('create_film')}>
-            <Form className={cx('mt-5 ml-5 mr-5')} method="POST" action="http://localhost:4100/employee/saveEmployee">
+            <Form className={cx('mt-5 ml-5 mr-5')} method="POST" action="http://localhost:12000/employee/saveEmployee">
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label> Name</Form.Label>
                     <Form.Control type="text" placeholder="Enter the name" name="name" />

@@ -32,11 +32,11 @@ function ListEmployee() {
     useEffect(() => {
         // Get link lấy ra dữ liệu là 1 object bao gồm 1 mảng và 1 count(số dữ liệu xóa )
         axios
-            .get('http://localhost:4100/me/storedEmloyee')
+            .get('http://localhost:12000/me/storedEmloyee')
             .then((myData) => {
                 console.log(myData);
                 // Set data dữ liệu
-                setDataFilm(myData.data.users);
+                setDataFilm(myData.data.musics);
                 // Set số dữ liệu xóa
                 setDeletedCount(myData.data.deletedCount);
             })
@@ -69,7 +69,8 @@ function ListEmployee() {
                     </tr>
                 </thead>
                 <tbody>
-                    {dataFilm.length > 0 ? ( // Hàm map : biến đầu là dữ liệu , biến sau là chi mục {index}
+                    {
+                        // Hàm map : biến đầu là dữ liệu , biến sau là chi mục {index}
                         dataFilm.map((dataItem, index) => (
                             <tr key={index}>
                                 <th>{index + 1}</th>
@@ -92,14 +93,7 @@ function ListEmployee() {
                                 </th>
                             </tr>
                         ))
-                    ) : (
-                        <tr>
-                            <h5 style={{ textAlign: 'center' }}>
-                                Không có dữ liệu
-                                <Link to="/create"> Tạo dữ liệu mới</Link>
-                            </h5>
-                        </tr>
-                    )}
+                    }
                 </tbody>
             </Table>
 
@@ -113,7 +107,7 @@ function ListEmployee() {
                         <Button variant="secondary" onClick={handleClose}>
                             Hủy
                         </Button>
-                        <form method="POST" action={`http://localhost:4100/employee/${id}?_method=DELETE`}>
+                        <form method="POST" action={`http://localhost:12000/employee/${id}?_method=DELETE`}>
                             <Button variant="danger" type="submit">
                                 Xóa
                             </Button>

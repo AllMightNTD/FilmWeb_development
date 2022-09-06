@@ -23,7 +23,7 @@ function TrashEmployee() {
     };
     useEffect(() => {
         axios
-            .get('http://localhost:4100/me/trash')
+            .get('http://localhost:12000/me/trash')
             .then((response) => setDataTrash(response ? response.data : []))
             .catch(function (error) {
                 // handle error
@@ -60,7 +60,7 @@ function TrashEmployee() {
                                     <div style={{ display: 'flex' }}>
                                         <form
                                             method="POST"
-                                            action={`http://localhost:4100/employee/${dataItem._id}/restore?_method=PATCH`}
+                                            action={`http://localhost:12000/employee/${dataItem._id}/restore?_method=PATCH`}
                                         >
                                             <Button className={cx('btn btn-danger')} type="submit">
                                                 Khôi phục
@@ -98,7 +98,7 @@ function TrashEmployee() {
                         </Button>
 
                         {/* Xóa vĩnh viễn với id */}
-                        <form method="POST" action={`http://localhost:4100/employee/${idforce}/force?_method=DELETE`}>
+                        <form method="POST" action={`http://localhost:12000/employee/${idforce}/force?_method=DELETE`}>
                             <Button variant="danger" type="submit">
                                 Xóa
                             </Button>

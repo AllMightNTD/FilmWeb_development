@@ -16,7 +16,7 @@ function UpdateFilm() {
 
     useEffect(() => {
         axios
-            .get(`http://localhost:4100/employee/${id}/edit`)
+            .get(`http://localhost:12000/employee/${id}/edit`)
             .then((response) => setDataFilm(response ? response.data : []))
             .catch(function (error) {
                 // handle error
@@ -26,7 +26,7 @@ function UpdateFilm() {
     console.log(dataFilm);
     return (
         <div className={cx('update_film')}>
-            <Form className="ml-5 mr-5" method="POST" action={`http://localhost:4100/employee/${id}?_method=PUT`}>
+            <Form className="ml-5 mr-5" method="POST" action={`http://localhost:12000/employee/${id}?_method=PUT`}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label> Name</Form.Label>
                     <Form.Control type="text" placeholder={dataFilm.name} name="name" />

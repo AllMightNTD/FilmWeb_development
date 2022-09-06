@@ -33,7 +33,7 @@ function Employee() {
     useEffect(() => {
         axios
             // page = 2 => trang thứ 2 , chứa tối đa 2 phần tử
-            .get(`http://localhost:4100?page=${page}&type=less`)
+            .get(`http://localhost:12000?page=${page}&type=less`)
             .then((response) => {
                 console.log(response.data);
                 setData(response ? response.data : []);
