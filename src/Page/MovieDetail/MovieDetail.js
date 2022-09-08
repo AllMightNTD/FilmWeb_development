@@ -32,7 +32,9 @@ function MovieDetail() {
                 <div className={cx('content_info')}>
                     <div className={cx('image_content')}>
                         <img src={dataFilm.image} className={cx('image')}></img>
-                        <button>Xem Phim</button>
+                        <Link to={`/watch-movie/${dataFilm.slug}`} className={cx('watch_film')}>
+                            Xem Phim
+                        </Link>
                     </div>
                     <div className={cx('info_content')}>
                         <h1>{dataFilm.name}</h1>

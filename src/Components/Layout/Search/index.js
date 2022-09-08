@@ -8,6 +8,7 @@ import VideoItem from '../../SearchVideoItem';
 import classNames from 'classnames/bind';
 import style from './Search.module.scss';
 import axios from 'axios';
+import { useDebounce } from '../../../hooks';
 
 const cx = classNames.bind(style);
 function Search() {
@@ -16,6 +17,9 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef();
+
+    // Sử dụng useDebounce
+    const debounce = useDebounce(searchValue, 1000);
 
     // Xử lý giá trị search
     const hanldeSearchValue = (e) => {
@@ -34,12 +38,12 @@ function Search() {
     };
 
     useEffect(() => {
-        if (!searchValue.trim()) {
+        if (!debounce.trim()) {
             return;
         }
         setLoading(true);
         axios
-            .get(`http://localhost:12000/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .get(`http://localhost:12000/search?q=${encodeURIComponent(debounce)}&type=less`)
             .then((response) => {
                 setSearchResult(response ? response.data : []);
                 console.log(response.data);
@@ -50,7 +54,7 @@ function Search() {
                 setLoading(false);
                 console.log(error);
             });
-    }, [searchValue]);
+    }, [debounce]);
     return (
         <Tippy
             interactive

@@ -6,6 +6,7 @@ import UpdateFilm from '../Page/UpdateFilm/UpdateFilm';
 import MovieDetail from '../Page/MovieDetail/MovieDetail';
 import TrashEmployee from '../Page/TrashEmployee/TrashEmployee';
 import EmployeeCategory from '../Page/EmployeeCategory/EmployeeCategory';
+import WatchMovie from '../Page/WatchMovie';
 const publicRoutes = [
     { path: '/', component: Employee },
     { path: '/Employee', component: Employee },
@@ -13,6 +14,7 @@ const publicRoutes = [
     { path: '/listEmployee', component: ListEmployee },
     { path: '/EditFilm/:id', component: UpdateFilm },
     { path: '/MovieDetail/:slug', component: MovieDetail },
+    { path: 'watch-movie/:slug', component: WatchMovie },
     { path: '/the-loai/:category', component: EmployeeCategory },
     { path: '/trash', component: TrashEmployee },
 ];
